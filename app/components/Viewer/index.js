@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Player, ControlBar, BigPlayButton } from 'video-react';
+import DropZone from '../../containers/DropZone';
 import ControllPanel from '../../containers/ControllPanel';
 import styles from './style.css';
 
@@ -35,9 +36,9 @@ export default class Viewer extends Component {
   }
 
   render() {
-    console.log(this.props.video);
     return (
       <div>
+        <DropZone index={this.props.index} />
         <Player
           ref={c => {
             this.player = c;
@@ -47,13 +48,6 @@ export default class Viewer extends Component {
           <BigPlayButton position="center" />
           <ControlBar disabled />
         </Player>
-        <ControllPanel
-          index={this.props.index}
-          changeCurrentTime={this.changeCurrentTime.bind(this)}
-          play={this.play.bind(this)}
-          pause={this.pause.bind(this)}
-          jump={this.jump.bind(this)}
-        />
       </div>
     );
   }

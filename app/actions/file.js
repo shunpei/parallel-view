@@ -1,9 +1,10 @@
 export const ACCEPTED = 'ACCEPTED';
 export const REJECTED = 'REJECTED';
 
-export const accepted = datas => ({
+export const accepted = (datas, index) => ({
   type: ACCEPTED,
-  datas
+  datas,
+  index
 });
 
 export function rejected() {

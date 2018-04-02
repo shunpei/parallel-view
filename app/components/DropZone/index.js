@@ -1,26 +1,34 @@
+// @flow
 import React, { Component } from 'react';
 import { Dialog, FlatButton } from 'material-ui';
 import Dropzone from 'react-dropzone';
 import styles from './style.css';
 
-export default class DropZone extends Component {
+type Props = {
+  index: number,
+  accepted: (files: Array<File>, index: number) => void
+};
+
+type State = {
+  modalOpen: boolean
+};
+
+export default class DropZone extends Component<Props, State> {
   state = {
-    open: false
+    modalOpen: false
   };
 
   handleOpen = () => {
-    this.setState({ open: true });
+    this.setState({ modalOpen: true });
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ modalOpen: false });
   };
 
-  handleOnVideoDrop(files) {
-    this.props.accepted(files);
-    // files.forEach((file) => {
-    //   this.props.addVideo(file);
-    // });
+  handleOnVideoDrop(files: Array<File>): void {
+    console.log(files);
+    this.props.accepted(files, this.props.index);
   }
 
   render() {
@@ -42,7 +50,7 @@ export default class DropZone extends Component {
           actions={actions}
           title="動画形式のファイルをアップしてください"
           modal={false}
-          open={this.state.open}
+          open={this.state.modalOpen}
           onRequestClose={this.handleClose}
         >
           The actions in this window were passed in as an array of React objects.

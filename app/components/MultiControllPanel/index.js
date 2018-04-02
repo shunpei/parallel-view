@@ -6,8 +6,9 @@ import Icon from '../../svgicon';
 export default class MultiControllPanel extends Component {
   getLongestVideoData() {
     const data = this.players.map(player => player.duration);
+    console.log(data);
     const maxNum = Math.max(...data);
-    const index = data.indexOf(maxNum);
+    const index = data[0] === undefined ? 1 : 0;
     const diameters = data.map(duration => duration / maxNum);
 
     return {
@@ -37,7 +38,7 @@ export default class MultiControllPanel extends Component {
   changeCurrentTime(seconds) {
     this.props.video.events.forEach((event, i) => {
       const { player } = event.getState();
-      event.seek(player.currentTime + seconds * this.getLongestVideoData().diameters[i]);
+      event.seek(player.currentTime + (seconds * this.getLongestVideoData().diameters[i]));
     });
   }
 
