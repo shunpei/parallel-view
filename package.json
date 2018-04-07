@@ -204,6 +204,7 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "reset-css": "^3.0.0",
     "source-map-support": "^0.5.3",
     "video-react": "^0.10.4"
   },

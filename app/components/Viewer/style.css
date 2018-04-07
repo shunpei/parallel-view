@@ -17,4 +17,5 @@
 .viewer {
   width: 100%;
   height: calc(56.25vw / 2);
+  position: relative;
 }
