@@ -1,9 +1,7 @@
 import { ACCEPTED } from '../actions/file';
 
 const initialState = {
-  datas: [
-    null, null
-  ],
+  datas: [null, null],
   totalTimes: []
 };
 
@@ -13,10 +11,7 @@ export default function counter(state = initialState, action) {
       if (action.datas.length > 1) {
         return {
           ...state,
-          datas: [
-            action.datas[0],
-            action.datas[1]
-          ]
+          datas: [action.datas[0], action.datas[1]]
         };
       }
       const newDatas = [...state.datas];

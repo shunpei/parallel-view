@@ -1,10 +1,10 @@
-import { bindActionCreators } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 import { connect } from 'react-redux';
 import Viewer from '../components/Viewer';
+import videoEventControler from '../hoc/videoEventControler';
 import * as VideoActions from '../actions/video';
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     file: state.file,
     video: state.video
@@ -15,4 +15,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(VideoActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Viewer);
+export default compose(connect(mapStateToProps, mapDispatchToProps), videoEventControler)(Viewer);

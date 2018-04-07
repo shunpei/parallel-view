@@ -1,57 +1,33 @@
 import React, { Component } from 'react';
-import { SvgIcon } from 'material-ui';
 import ControllPanel from '../../containers/ControllPanel';
-import Icon from '../../svgicon';
 
 export default class MultiControllPanel extends Component {
-  getLongestVideoData() {
-    const data = this.players.map(player => player.duration);
-    console.log(data);
-    const maxNum = Math.max(...data);
-    const index = data[0] === undefined ? 1 : 0;
-    const diameters = data.map(duration => duration / maxNum);
-
-    return {
-      index,
-      diameters
-    };
+  constructor(props) {
+    super(props);
+    this.players = this.props.video.events;
+    this.datas = this.props.video.singlePlayers;
   }
 
-  play() {
-    this.props.video.events.forEach(event => {
-      event.play();
-    });
-  }
-
-  pause() {
-    this.props.video.events.forEach(event => {
-      event.pause();
-    });
-  }
-
-  jump(seconds) {
-    this.props.video.events.forEach((event, i) => {
-      event.seek(seconds * this.getLongestVideoData().diameters[i]);
-    });
-  }
-
-  changeCurrentTime(seconds) {
-    this.props.video.events.forEach((event, i) => {
-      const { player } = event.getState();
-      event.seek(player.currentTime + (seconds * this.getLongestVideoData().diameters[i]));
-    });
+  componentDidUpdate() {
+    this.fixedIndex = this.props.index
+      ? this.props.index
+      : this.players.map(a => !!a).indexOf(true);
+    if (this.props.single) {
+      this.players = [this.props.video.events[this.fixedIndex]];
+      this.singlePlayers = [this.props.video.singlePlayers[this.fixedIndex]];
+    }
   }
 
   render() {
-    this.players = this.props.video.singlePlayers;
     if (this.players.length === 0) return null;
     return (
       <ControllPanel
-        index={this.getLongestVideoData().index}
-        play={this.play.bind(this)}
-        pause={this.pause.bind(this)}
-        changeCurrentTime={this.changeCurrentTime.bind(this)}
-        jump={this.jump.bind(this)}
+        index={this.fixedIndex}
+        single={!!this.props.single}
+        play={this.props.play.bind(this)}
+        pause={this.props.pause.bind(this)}
+        changeCurrentTime={this.props.changeCurrentTime.bind(this)}
+        jump={this.props.jump.bind(this)}
       />
     );
   }

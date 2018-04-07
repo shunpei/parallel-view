@@ -27,24 +27,20 @@ export default class DropZone extends Component<Props, State> {
   };
 
   handleOnVideoDrop(files: Array<File>): void {
-    console.log(files);
     this.props.accepted(files, this.props.index);
   }
 
   render() {
     const actions = [<FlatButton primary label="OK" onClick={this.handleClose} />];
-
     return (
-      <div>
+      <div onClick={this.props.wrapOnClick} className={this.props.wrapClass}>
         <Dropzone
           onDropAccepted={this.handleOnVideoDrop.bind(this)}
           onDropRejected={this.handleOpen.bind(this)}
           accept="video/mp4"
+          {...this.props.dropZone}
         >
-          <div>
-            ファイルを指定またはドラッグ&ドロップ
-            <p>形式: gif/png/jpeg/jpg</p>
-          </div>
+          {this.props.children}
         </Dropzone>
         <Dialog
           actions={actions}

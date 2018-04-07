@@ -15,7 +15,13 @@ export default class Home extends Component<Props> {
     const datas = this.props.file.datas;
     return datas.map((data, i) => {
       const key = `video_${i}`;
-      if (data === null) return <DropZone key={key} index={i} />;
+      if (data === null) {
+        return (
+          <DropZone key={key} index={i}>
+            <div>aaaaa</div>
+          </DropZone>
+        );
+      }
       return <Viewer key={key} index={i} data={data} />;
     });
   }
@@ -26,7 +32,7 @@ export default class Home extends Component<Props> {
         <div className={styles.container} data-tid="container">
           <h2>Home</h2>
         </div>
-        <div>{this.renderViewer()}</div>
+        <div className={styles.viewers}>{this.renderViewer()}</div>
         <MultiControllPanel />
       </div>
     );
