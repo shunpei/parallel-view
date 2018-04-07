@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ControllPanel from '../../containers/ControllPanel';
 
-export default class MultiControllPanel extends Component {
+export default class MultiControllPanel extends PureComponent {
   constructor(props) {
     super(props);
     this.players = this.props.video.events;

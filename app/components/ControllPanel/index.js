@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { SvgIcon } from 'material-ui';
 import { lightBlue200 } from 'material-ui/styles/colors';
 import Slider from '../../containers/Slider';
@@ -15,7 +15,7 @@ const style = {
   }
 };
 
-export default class Viewer extends Component {
+export default class Viewer extends PureComponent {
   playIcon() {
     if (this.player.paused) {
       return (

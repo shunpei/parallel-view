@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import DropZone from '../../containers/DropZone';
 import Viewer from '../../containers/Viewer';
@@ -8,7 +8,7 @@ import styles from './style.css';
 
 type Props = {};
 
-export default class Home extends Component<Props> {
+export default class Home extends PureComponent<Props> {
   props: Props;
 
   renderViewer() {
@@ -18,7 +18,7 @@ export default class Home extends Component<Props> {
       if (data === null) {
         return (
           <DropZone key={key} index={i}>
-            <div>aaaaa</div>
+            <div>DRAG & DROP</div>
           </DropZone>
         );
       }
@@ -28,12 +28,11 @@ export default class Home extends Component<Props> {
 
   render() {
     return (
-      <div>
-        <div className={styles.container} data-tid="container">
-          <h2>Home</h2>
-        </div>
+      <div style={{ paddingTop: 150 }}>
         <div className={styles.viewers}>{this.renderViewer()}</div>
-        <MultiControllPanel />
+        <div style={{ position: 'absolute', bottom: 10, width: '100%' }}>
+          <MultiControllPanel />
+        </div>
       </div>
     );
   }
