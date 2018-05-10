@@ -56,7 +56,7 @@ export default class Drop extends PureComponent {
           onDropRejected={this.handleOpen.bind(this)}
           style={onlyFrame ? null : DropzoneStyle(quantity || 2)}
           multiple={false}
-          accept="video/mp4"
+          accept="video/mp4, video/quicktime"
           {...dropzone}
         >
           {onlyFrame ? null : (
@@ -68,13 +68,13 @@ export default class Drop extends PureComponent {
                 <Title>DRAG & DROP</Title>
                 <SubTitle>or select files your system</SubTitle>
               </Wrapper>
-              <Description>( you can only upload MP4 )</Description>
+              <Description>( you can upload MP4 or MOV )</Description>
             </Fragment>
           )}
         </DropZone>
         <Dialog
           actions={actions}
-          title="動画形式のファイルをアップ、もしくは2つ以上のファイルはアップできません。"
+          title="指定された動画形式（MP4, MOV）以外、もしくは2つ以上のファイルはアップできません。"
           modal={false}
           open={this.state.modalOpen}
           onRequestClose={this.handleClose}

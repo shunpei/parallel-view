@@ -14,16 +14,14 @@ export default props => {
           {CurrentFiles.right ? <Video mode="right" /> : <DropZone mode="right" />}
         </DropZoneWrapper>
       </Container>
-      <MultiControllPanel>
-        <ControllPanel />
-      </MultiControllPanel>
+      <ControllPanel />
     </Fragment>
   );
 };
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 108px);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -32,14 +30,9 @@ const Container = styled.div`
 
 const DropZoneWrapper = styled.div`
   width: 100%;
+  padding-top: 108px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-`;
-
-const MultiControllPanel = styled.div`
-  width: 100%;
-  position: fixed;
-  bottom: 20px;
 `;
