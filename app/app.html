@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Hello Electron React!</title>
+  <title>ParallelView</title>
   <script>
     (function () {
       if (!process.env.HOT) {
@@ -14,6 +14,9 @@
         document.getElementsByTagName('head')[0].appendChild(link);
       }
     }());
+    window.addEventListener('drop', function (e) {
+      e.preventDefault();
+    });
 
   </script>
 </head>
