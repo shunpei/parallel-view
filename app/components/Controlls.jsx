@@ -6,7 +6,6 @@ import Pause from 'material-ui/svg-icons/av/pause-circle-outline';
 import Forward from 'material-ui/svg-icons/av/fast-forward';
 import Rewind from 'material-ui/svg-icons/av/fast-rewind';
 import Replay from 'material-ui/svg-icons/av/replay';
-import Upload from 'material-ui/svg-icons/action/get-app';
 
 import { lightBlue200 } from 'material-ui/styles/colors';
 
@@ -23,9 +22,7 @@ export default props => {
 
   return (
     <Container>
-      <LeftPostion>
-        <SoundControll mode={mode} />
-      </LeftPostion>
+      <LeftPostion>{!!mode || <SoundControll mode={mode} />}</LeftPostion>
       <Controlls>
         <StyledReplay hoverColor={lightBlue200} onClick={() => jump(null, 0)} />
         <StyledRewind hoverColor={lightBlue200} onClick={() => changeCurrentTime(-0.1)} />

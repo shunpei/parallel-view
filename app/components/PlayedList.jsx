@@ -27,12 +27,17 @@ export default class PlayedList extends React.Component {
   };
 
   handleChange = () => {
-    const { setCurrentFile } = this.props;
+    const { setCurrentFile, mode } = this.props;
     const { path } = this.state;
-    console.log(path);
-    Object.keys(path).forEach(mode => {
+
+    if (mode) {
       setCurrentFile(path[mode], mode);
-    });
+    } else {
+      Object.keys(path).forEach(key => {
+        setCurrentFile(path[key], key);
+      });
+    }
+
     this.setState({ open: false });
   };
 
